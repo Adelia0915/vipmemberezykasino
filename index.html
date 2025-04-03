@@ -1,0 +1,56 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Card } from "@/components/ui/card";
+
+const newsArticles = [
+  { id: 1, title: "Berita Terbaru Hari Ini", summary: "Ringkasan berita terbaru.", content: "Isi lengkap berita terbaru..." },
+  { id: 2, title: "Teknologi Masa Depan", summary: "Bagaimana teknologi akan berkembang.", content: "Isi berita tentang teknologi masa depan..." },
+];
+
+const Home = () => (
+  <div className="p-4">
+    <h1 className="text-2xl font-bold mb-4">Berita Terkini</h1>
+    <div className="grid gap-4">
+      {newsArticles.map((news) => (
+        <Card key={news.id} className="p-4 hover:shadow-lg">
+          <h2 className="text-xl font-semibold">{news.title}</h2>
+          <p>{news.summary}</p>
+          <Link to={`/news/${news.id}`} className="text-blue-500">Baca Selengkapnya</Link>
+        </Card>
+      ))}
+    </div>
+  </div>
+);
+
+const NewsDetail = ({ id }) => {
+  const article = newsArticles.find((news) => news.id === parseInt(id));
+  if (!article) return <p>Berita tidak ditemukan</p>;
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold">{article.title}</h1>
+      <p>{article.content}</p>
+      <Link to="/" className="text-blue-500">Kembali</Link>
+    </div>
+  );
+};
+
+const App = () => (
+  <Router>
+    <div className="max-w-2xl mx-auto">
+      <nav className="bg-gray-800 p-4 text-white">
+        <Link to="/" className="font-bold">Home</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/news/:id" element={<NewsDetailWrapper />} />
+      </Routes>
+    </div>
+  </Router>
+);
+
+const NewsDetailWrapper = () => {
+  const id = window.location.pathname.split("/").pop();
+  return <NewsDetail id={id} />;
+};
+
+export default App;
