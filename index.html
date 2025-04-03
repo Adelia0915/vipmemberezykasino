@@ -17,10 +17,11 @@
             background: #343a40;
             color: white;
             padding: 20px;
-            height: 100vh;
             position: fixed;
             left: 0;
             top: 60px; /* Menurunkan posisi sidebar */
+            height: calc(100vh - 60px); /* Mengatur tinggi sidebar agar tidak terlalu panjang */
+            overflow-y: auto; /* Membuat sidebar scrollable jika konten melebihi batas */
         }
         .sidebar a {
             display: block;
