@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
 
 const newsArticles = [
@@ -12,7 +12,7 @@ const Home = () => (
     <h1 className="text-2xl font-bold mb-4">Berita Terkini</h1>
     <div className="grid gap-4">
       {newsArticles.map((news) => (
-        <Card key={news.id} className="p-4 hover:shadow-lg">
+        <Card key={news.id} className="p-4 hover:shadow-lg border border-gray-200 rounded-lg">
           <h2 className="text-xl font-semibold">{news.title}</h2>
           <p>{news.summary}</p>
           <Link to={`/news/${news.id}`} className="text-blue-500">Baca Selengkapnya</Link>
@@ -22,35 +22,31 @@ const Home = () => (
   </div>
 );
 
-const NewsDetail = ({ id }) => {
+const NewsDetail = () => {
+  const { id } = useParams();
   const article = newsArticles.find((news) => news.id === parseInt(id));
-  if (!article) return <p>Berita tidak ditemukan</p>;
+  if (!article) return <p className="p-4 text-red-500">Berita tidak ditemukan</p>;
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold">{article.title}</h1>
-      <p>{article.content}</p>
-      <Link to="/" className="text-blue-500">Kembali</Link>
+      <p className="mt-2">{article.content}</p>
+      <Link to="/" className="text-blue-500 mt-4 inline-block">Kembali</Link>
     </div>
   );
 };
 
 const App = () => (
   <Router>
-    <div className="max-w-2xl mx-auto">
-      <nav className="bg-gray-800 p-4 text-white">
-        <Link to="/" className="font-bold">Home</Link>
+    <div className="max-w-3xl mx-auto">
+      <nav className="bg-gray-800 p-4 text-white flex justify-between">
+        <Link to="/" className="font-bold text-lg">Portal Berita</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news/:id" element={<NewsDetailWrapper />} />
+        <Route path="/news/:id" element={<NewsDetail />} />
       </Routes>
     </div>
   </Router>
 );
-
-const NewsDetailWrapper = () => {
-  const id = window.location.pathname.split("/").pop();
-  return <NewsDetail id={id} />;
-};
 
 export default App;
