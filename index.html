@@ -1,26 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link, useParams } from "react-router-dom";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Carousel } from "@/components/ui/carousel";
 
 const newsArticles = [
-  { id: 1, title: "Berita Terbaru Hari Ini", summary: "Ringkasan berita terbaru.", content: "Isi lengkap berita terbaru..." },
-  { id: 2, title: "Teknologi Masa Depan", summary: "Bagaimana teknologi akan berkembang.", content: "Isi berita tentang teknologi masa depan..." },
+  { id: 1, title: "Berita Terbaru Hari Ini", summary: "Ringkasan berita terbaru.", content: "Isi lengkap berita terbaru...", image: "https://via.placeholder.com/600x300" },
+  { id: 2, title: "Teknologi Masa Depan", summary: "Bagaimana teknologi akan berkembang.", content: "Isi berita tentang teknologi masa depan...", image: "https://via.placeholder.com/600x300" },
+  { id: 3, title: "Ekonomi Global", summary: "Analisis ekonomi terkini.", content: "Isi berita tentang ekonomi global...", image: "https://via.placeholder.com/600x300" },
 ];
 
-const Home = () => (
-  <div className="p-4">
-    <h1 className="text-2xl font-bold mb-4">Berita Terkini</h1>
-    <div className="grid gap-4">
-      {newsArticles.map((news) => (
-        <Card key={news.id} className="p-4 hover:shadow-lg border border-gray-200 rounded-lg">
-          <h2 className="text-xl font-semibold">{news.title}</h2>
-          <p>{news.summary}</p>
-          <Link to={`/news/${news.id}`} className="text-blue-500">Baca Selengkapnya</Link>
-        </Card>
-      ))}
+const Home = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % newsArticles.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + newsArticles.length) % newsArticles.length);
+  };
+
+  return (
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Berita Terkini</h1>
+      <div className="relative w-full max-w-3xl mx-auto">
+        <img src={newsArticles[currentIndex].image} alt={newsArticles[currentIndex].title} className="w-full h-64 object-cover rounded-lg" />
+        <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
+          <Button onClick={prevSlide} className="bg-gray-800 text-white">&#8592;</Button>
+        </div>
+        <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+          <Button onClick={nextSlide} className="bg-gray-800 text-white">&#8594;</Button>
+        </div>
+      </div>
+      <div className="grid gap-4 mt-4">
+        {newsArticles.map((news) => (
+          <Card key={news.id} className="p-4 hover:shadow-lg border border-gray-200 rounded-lg">
+            <h2 className="text-xl font-semibold">{news.title}</h2>
+            <p>{news.summary}</p>
+            <Link to={`/news/${news.id}`} className="text-blue-500"><Button>Baca Selengkapnya</Button></Link>
+          </Card>
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const NewsDetail = () => {
   const { id } = useParams();
@@ -29,8 +53,9 @@ const NewsDetail = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold">{article.title}</h1>
+      <img src={article.image} alt={article.title} className="w-full h-64 object-cover rounded-lg mt-4" />
       <p className="mt-2">{article.content}</p>
-      <Link to="/" className="text-blue-500 mt-4 inline-block">Kembali</Link>
+      <Link to="/" className="text-blue-500 mt-4 inline-block"><Button>Kembali</Button></Link>
     </div>
   );
 };
