@@ -13,6 +13,7 @@
             display: flex;
             flex-direction: column;
         }
+
         .sidebar {
             width: 200px;
             background: #4e342e;
@@ -25,6 +26,7 @@
             flex-direction: column;
             gap: 15px;
         }
+
         .sidebar a {
             display: block;
             color: white;
@@ -36,42 +38,46 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .sidebar a:hover {
             background: #a1887f;
             transform: translateY(-5px);
         }
+
         .main-content {
             margin-left: 220px;
-            margin-top: 150px;
+            margin-top: 150px; /* Menyesuaikan margin agar konten tidak tertutup header */
             width: calc(100% - 220px);
-            padding: 0 20px;
         }
+
         .header {
             background: linear-gradient(135deg, #4e342e 0%, #ffeb3b 100%);
             color: white;
             padding: 25px 20px;
             text-align: center;
             font-size: 24px;
-            position: fixed;
+            position: fixed; /* Menggunakan fixed untuk header tetap di atas */
             top: 0;
             left: 0;
             width: 100%;
             border-bottom: 5px solid #ffeb3b;
             border-radius: 0 0 50% 50% / 20%;
-            z-index: 10;
+            z-index: 10; /* Agar header tetap di atas konten */
         }
+
         .header a {
             position: absolute;
             left: 20px;
             top: 15px;
             display: inline-block;
         }
+
         .header img {
             width: 50px;
         }
+
         .container {
-            width: 100%;
-            max-width: 1200px;
+            width: 80%;
             margin: 20px auto;
             padding: 20px;
             background: rgba(255, 249, 230, 0.95);
@@ -79,25 +85,29 @@
             border-radius: 10px;
             text-align: center;
         }
+
         .product-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 20px;
+            justify-content: space-around;
+            margin-top: 20px;
         }
+
         .product {
-            width: calc(33.333% - 20px);
+            width: 30%;
             background: #fff8e1;
             padding: 15px;
-            margin: 10px 0;
+            margin: 10px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+
         .product img {
             width: 100%;
             border-radius: 10px;
         }
+
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -110,9 +120,11 @@
             cursor: pointer;
             text-decoration: none;
         }
+
         .button:hover {
             background: #a1887f;
         }
+
         .floating-button {
             position: fixed;
             bottom: 20px;
@@ -127,36 +139,75 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        /* Media queries for mobile responsiveness */
-        @media screen and (max-width: 768px) {
+        /* Media Queries untuk tampilan mobile */
+        @media (max-width: 768px) {
             .sidebar {
                 width: 100%;
-                position: static;
+                position: relative;
                 top: 0;
-                flex-direction: row;
+                display: flex;
                 justify-content: space-around;
-                background: #4e342e;
+                padding: 10px 0;
             }
+
+            .sidebar a {
+                width: 20%;
+                padding: 10px;
+                font-size: 14px;
+            }
+
             .main-content {
                 margin-left: 0;
-                margin-top: 80px;
+                margin-top: 200px; /* Menyesuaikan agar konten tidak tertutup header */
+                width: 100%;
             }
+
+            .header {
+                padding: 20px;
+                font-size: 20px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
             .product {
-                width: calc(50% - 20px);
+                width: 45%; /* 2 produk per baris */
+                margin: 10px 0;
+            }
+
+            .product img {
+                width: 80%;
+                margin-bottom: 10px;
+            }
+
+            .floating-button {
+                bottom: 10px;
+                right: 10px;
+                font-size: 18px;
+                padding: 12px;
             }
         }
 
-        @media screen and (max-width: 480px) {
+        /* Media Queries untuk tampilan kecil (mobile) */
+        @media (max-width: 480px) {
+            .sidebar a {
+                width: 30%;
+                font-size: 12px;
+            }
+
             .header {
                 font-size: 18px;
-                padding: 15px;
             }
+
             .product {
-                width: 100%;
+                width: 90%; /* 1 produk per baris */
             }
+
             .floating-button {
-                font-size: 18px;
-                padding: 12px;
+                font-size: 16px;
+                padding: 10px;
             }
         }
     </style>
