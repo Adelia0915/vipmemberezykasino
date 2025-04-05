@@ -9,12 +9,12 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #5d4037, #3e2723);
+            background: linear-gradient(to bottom, #a1887f, #ffe082);
             display: flex;
         }
         .sidebar {
             width: 200px;
-            background: #343a40;
+            background: #4e342e;
             color: white;
             padding: 20px;
             position: fixed;
@@ -23,42 +23,38 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            height: auto;
         }
         .sidebar a {
             display: block;
             color: white;
             padding: 15px;
             text-decoration: none;
-            background: #495057;
+            background: #6d4c41;
             border-radius: 5px;
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .sidebar a:hover {
-            background: #6c757d;
+            background: #a1887f;
             transform: translateY(-5px);
         }
         .main-content {
             margin-left: 220px;
             width: calc(100% - 220px);
-            padding-top: 90px;
         }
         .header {
-            background: linear-gradient(to bottom right, #5d4037, #3e2723);
+            background: linear-gradient(135deg, #4e342e 0%, #ffeb3b 100%);
             color: white;
-            padding: 20px 20px;
+            padding: 25px 20px;
             text-align: center;
             font-size: 24px;
-            position: fixed;
+            position: absolute; /* Perubahan dari relative ke absolute */
             top: 0;
             left: 0;
-            width: 100%;
-            z-index: 999;
-            border-bottom: 5px solid gold;
-            border-radius: 0 0 50% 50% / 0 0 20% 20%;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            width: 100%; /* Membuat header full width */
+            border-bottom: 5px solid #ffeb3b;
+            border-radius: 0 0 50% 50% / 20%;
         }
         .header a {
             position: absolute;
@@ -68,15 +64,13 @@
         }
         .header img {
             width: 50px;
-            border-radius: 10px;
-            border: 2px solid gold;
         }
         .container {
             width: 80%;
-            margin: auto;
+            margin: 20px auto;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 249, 230, 0.95);
+            box-shadow: 0 0 10px rgba(80, 40, 0, 0.2);
             border-radius: 10px;
             text-align: center;
         }
@@ -88,7 +82,7 @@
         }
         .product {
             width: 30%;
-            background: #ffffff;
+            background: #fff8e1;
             padding: 15px;
             margin: 10px;
             border-radius: 10px;
@@ -105,21 +99,21 @@
             margin: 10px;
             font-size: 16px;
             color: white;
-            background: #28a745;
+            background: #6d4c41;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
         }
         .button:hover {
-            background: #218838;
+            background: #a1887f;
         }
         .floating-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            background: #ff5733;
-            color: white;
+            background: #ffca28;
+            color: #4e342e;
             padding: 15px;
             border-radius: 50%;
             text-align: center;
