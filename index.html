@@ -11,6 +11,7 @@
             padding: 0;
             background: linear-gradient(to bottom, #a1887f, #ffe082);
             display: flex;
+            flex-direction: column;
         }
         .sidebar {
             width: 200px;
@@ -41,8 +42,9 @@
         }
         .main-content {
             margin-left: 220px;
-            margin-top: 150px; /* Menyesuaikan margin agar konten tidak tertutup header */
+            margin-top: 150px;
             width: calc(100% - 220px);
+            padding: 0 20px;
         }
         .header {
             background: linear-gradient(135deg, #4e342e 0%, #ffeb3b 100%);
@@ -50,13 +52,13 @@
             padding: 25px 20px;
             text-align: center;
             font-size: 24px;
-            position: fixed; /* Menggunakan fixed untuk header tetap di atas */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             border-bottom: 5px solid #ffeb3b;
             border-radius: 0 0 50% 50% / 20%;
-            z-index: 10; /* Agar header tetap di atas konten */
+            z-index: 10;
         }
         .header a {
             position: absolute;
@@ -68,7 +70,8 @@
             width: 50px;
         }
         .container {
-            width: 80%;
+            width: 100%;
+            max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
             background: rgba(255, 249, 230, 0.95);
@@ -79,14 +82,14 @@
         .product-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
-            margin-top: 20px;
+            justify-content: space-between;
+            gap: 20px;
         }
         .product {
-            width: 30%;
+            width: calc(33.333% - 20px);
             background: #fff8e1;
             padding: 15px;
-            margin: 10px;
+            margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
@@ -122,6 +125,39 @@
             font-size: 20px;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Media queries for mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: static;
+                top: 0;
+                flex-direction: row;
+                justify-content: space-around;
+                background: #4e342e;
+            }
+            .main-content {
+                margin-left: 0;
+                margin-top: 80px;
+            }
+            .product {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .header {
+                font-size: 18px;
+                padding: 15px;
+            }
+            .product {
+                width: 100%;
+            }
+            .floating-button {
+                font-size: 18px;
+                padding: 12px;
+            }
         }
     </style>
 </head>
