@@ -41,6 +41,7 @@
         }
         .main-content {
             margin-left: 220px;
+            margin-top: 150px; /* Menyesuaikan margin agar konten tidak tertutup header */
             width: calc(100% - 220px);
         }
         .header {
@@ -49,12 +50,13 @@
             padding: 25px 20px;
             text-align: center;
             font-size: 24px;
-            position: absolute; /* Perubahan dari relative ke absolute */
+            position: fixed; /* Menggunakan fixed untuk header tetap di atas */
             top: 0;
             left: 0;
-            width: 100%; /* Membuat header full width */
+            width: 100%;
             border-bottom: 5px solid #ffeb3b;
             border-radius: 0 0 50% 50% / 20%;
+            z-index: 10; /* Agar header tetap di atas konten */
         }
         .header a {
             position: absolute;
